@@ -9,6 +9,7 @@
                <input v-model="email" type="email" id="email" name="email" class="mt-1 p-2 w-full border rounded-md">
             </div>
 
+
             <div class="mb-4">
                <label for="password" class="block text-sm font-medium text-gray-600">Password</label>
                <input v-model="password" type="password" id="password" name="password"
