@@ -21,30 +21,97 @@ export default {
     }
   },
   mounted() {
-    this.getUsers();
-    this.getVehicles();
-    this.getGarages();
+    // this.getUsers();
+    // this.getUser();
+    // this.deleteUser();
+    // this.getVehicles();
+    // this.getVehicle();
+    // this.deleteVehicle();
+    // this.getGarages();
+    // this.getGarage();
+    // this.deleteGarage();
   },
   methods: {
-    async getName() {
-      await axios.get('http://localhost:80/api/names').then(res => {
-        console.log(res);
-      })
+    async getUsers() {
+      try {
+        await axios.get('http://localhost:80/api/users').then(response => {
+          console.log(response);
+        })
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async getUser() {
+      try {
+        await axios.get('http://localhost:80/api/users/1').then(response => {
+          console.log(response);
+        })
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async deleteUser() {
+      try {
+        await axios.delete('http://localhost:80/api/users/3').then(response => {
+          console.log(response);
+        })
+      } catch (error) {
+        console.error(error);
+      }
     },
     async getVehicles() {
-      await axios.get('http://localhost:80/api/vehicles').then(res => {
-        console.log(res);
-      })
+      try {
+        await axios.get('http://localhost:80/api/vehicles').then(res => {
+          console.log(res);
+        })
+      } catch (error) {
+        console.error(error);
+      }
     },
-    async getUsers() {
-      await axios.get('http://localhost:80/api/users').then(response => {
-        console.log(response);
-      })
+    async getVehicle() {
+      try {
+        await axios.get('http://localhost:80/api/vehicles/1').then(res => {
+          console.log(res);
+        })
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async deleteVehicle() {
+      try {
+        await axios.delete('http://localhost:80/api/vehicles/11').then(res => {
+          console.log(res);
+        })
+      } catch (error) {
+        console.error(error);
+      }
     },
     async getGarages() {
-      await axios.get('http://localhost:80/api/garages').then(response => {
-        console.log(response);
-      })
+      try {
+        await axios.get('http://localhost:80/api/garages').then(response => {
+          console.log(response);
+        })
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async getGarage() {
+      try {
+        await axios.get('http://localhost:80/api/garages/1').then(response => {
+          console.log(response);
+        })
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async deleteGarage() {
+      try {
+        await axios.delete('http://localhost:80/api/garages/14').then(response => {
+          console.log(response);
+        })
+      } catch (error) {
+        console.error(error);
+      }
     },
   },
 }
