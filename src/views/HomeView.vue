@@ -1,17 +1,10 @@
-<script setup>
-import TheWelcome from '../components/TheWelcome.vue'
-</script>
-
 <template>
-  <main>
-    <h1>Parking Garage Management</h1>
-
-  </main>
+  <Sidebar />
 </template>
 
 
 <script>
-
+import Sidebar from '../components/Sidebar.vue';
 import axios from 'axios';
 export default {
   name: 'names',
@@ -20,16 +13,19 @@ export default {
       name: []
     }
   },
+  components: {
+    Sidebar,
+  },
   mounted() {
-    // this.getUsers();
-    // this.getUser();
-    // this.deleteUser();
-    // this.getVehicles();
-    // this.getVehicle();
-    // this.deleteVehicle();
-    // this.getGarages();
-    // this.getGarage();
-    // this.deleteGarage();
+    this.getUsers();
+    this.getUser();
+    //this.deleteUser();
+    this.getVehicles();
+    this.getVehicle();
+    //this.deleteVehicle();
+    this.getGarages();
+    this.getGarage();
+    //this.deleteGarage();
   },
   methods: {
     async getUsers() {
@@ -43,7 +39,7 @@ export default {
     },
     async getUser() {
       try {
-        await axios.get('http://localhost:80/api/users/1').then(response => {
+        await axios.get('http://localhost:80/api/users/2').then(response => {
           console.log(response);
         })
       } catch (error) {
