@@ -1,5 +1,5 @@
 <template>
-  <Sidebar />
+  <h1>Garages</h1>
 </template>
 
 <script>
