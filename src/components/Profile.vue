@@ -22,8 +22,25 @@
     </div>
   </div>
   <div id="history">
-    <div id="history-heading" class="text-center text-3xl py-6">History</div>
-    <div id="history-table"></div>
+    <div id="history-heading" class="text-center text-3xl py-6">
+      Parking History
+    </div>
+    <div id="history-table">
+      <ul>
+        <li v-for="parkingHistory in history">
+          <div id="history-table" class="grid grid-cols-12">
+            <div
+              id="history-card"
+              class="col-start-5 col-end-12 flex justify-between py-4"
+            >
+              <h2>{{ parkingHistory.user_id }}</h2>
+              <h2>{{ parkingHistory.vehicle_id }}</h2>
+              <h2>{{ parkingHistory.garage }}</h2>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -32,13 +49,20 @@ import axios from "axios";
 import { ref, onMounted } from "vue";
 
 const user = ref();
+const history = ref();
 
 onMounted(async () => {
   await getLoggedInUser();
+  await getUsersParkingHistory();
 });
 
 async function getLoggedInUser() {
   let { data } = await axios.get("http://localhost:80/api/user");
   user.value = data;
+}
+
+async function getUsersParkingHistory() {
+  let { data } = await axios.get("http://localhost:80/api/parking-history");
+  history.value = data.history;
 }
 </script>

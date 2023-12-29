@@ -89,6 +89,7 @@
             />
           </svg>
           <div class="mx-3">Logout</div>
+        </router-link>
       </div>
     </div>
   </div>
