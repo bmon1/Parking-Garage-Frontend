@@ -1,13 +1,17 @@
-<template>
-  <h1>Vehicles</h1>
-</template>
+<template>{{ vehicles }}</template>
 
-<script>
-import Sidebar from "../components/Sidebar.vue";
+<script setup>
+import axios from "axios";
+import { ref, onMounted } from "vue";
 
-export default {
-  components: {
-    Sidebar,
-  },
-};
+const vehicles = ref();
+
+onMounted(async () => {
+  await getVehicles();
+});
+
+async function getVehicles() {
+  let { data } = await axios.get("http://localhost:80/api/vehicles");
+  vehicles.value = data;
+}
 </script>

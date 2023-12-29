@@ -89,13 +89,9 @@
             />
           </svg>
           <div class="mx-3">Logout</div>
-        </router-link>
       </div>
     </div>
-    <RouterView />
   </div>
 </template>
 
-<script>
-import { RouterView } from "vue-router";
-</script>
+<script></script>

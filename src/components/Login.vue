@@ -2,8 +2,6 @@
   <div class="min-h-screen min-w-screen flex items-center justify-center">
     <div class="max-w-md w-full p-6 bg-white rounded-md shadow-md">
       <h2 class="text-2xl font-semibold mb-6">Login</h2>
-
-      {{ user }}
       <form @submit.prevent="onLogin">
         <div class="mb-4">
           <label for="email" class="block text-sm font-medium text-gray-600"
@@ -45,9 +43,11 @@
 <script setup>
 import axios from "axios";
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 
 axios.defaults.withCredentials = true;
 // axios.defaults.headers.common['X-CSRF-TOKEN'] = document.head.querySelector('meta[name="csrf-token"]').content;
+const router = useRouter();
 
 const form = ref({
   email: null,
@@ -66,6 +66,8 @@ async function onLogin() {
   let { data } = await axios.get("http://localhost:80/api/user");
 
   user.value = data;
+
+  router.push("/profile");
 }
 </script>
 
