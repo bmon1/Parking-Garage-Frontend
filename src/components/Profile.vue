@@ -46,8 +46,8 @@
 import axios from "axios";
 import { ref, onMounted } from "vue";
 
-const user = ref();
-const history = ref();
+const user = ref(null);
+const history = ref(null);
 
 onMounted(async () => {
   await getLoggedInUser();

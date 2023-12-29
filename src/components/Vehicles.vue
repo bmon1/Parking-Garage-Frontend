@@ -3,7 +3,11 @@
     <div id="vehicle-header" class="col-start-6 col-end-6 text-4xl my-12">
       Vehicles
     </div>
-    <button type="button" class="col-start-11 col-end-12">Add Vehicle</button>
+    <div class="col-start-11 col-end-12 flex items-center">
+      <router-link :to="{ name: 'addVehicle' }">
+        <button type="button">Add Vehicle</button>
+      </router-link>
+    </div>
   </div>
 
   <ul>
@@ -19,9 +23,12 @@
           <h2>{{ vehicle.model }}</h2>
           <h2>{{ vehicle.color }}</h2>
         </div>
-        <button type="button" class="col-start-11 col-end-12">
-          Park Vehicle
-        </button>
+        <router-link
+          :to="{ path: '/vehicles/' + vehicle.id }"
+          class="col-start-11 col-end-12 flex items-center"
+        >
+          <button type="button">Park Vehicle</button>
+        </router-link>
       </div>
     </li>
   </ul>
@@ -31,7 +38,7 @@
 import axios from "axios";
 import { ref, onMounted } from "vue";
 
-const vehicles = ref();
+const vehicles = ref(null);
 
 onMounted(async () => {
   await getVehicles();
