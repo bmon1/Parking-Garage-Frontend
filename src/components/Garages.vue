@@ -3,10 +3,10 @@
 
   <ul>
     <li v-for="garage in garages">
-      <div id="garage-table" class="grid grid-cols-12">
+      <div id="garage-table">
         <router-link
           :to="{ path: '/garages/' + garage.id }"
-          class="col-start-2 col-end-4"
+          class="grid grid-cols-12"
         >
           <div id="garage-picture"></div>
           <div

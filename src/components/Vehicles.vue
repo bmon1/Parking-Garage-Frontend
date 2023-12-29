@@ -11,26 +11,28 @@
   </div>
 
   <ul>
-    <li v-for="vehicle in vehicles">
-      <div id="vehicle-table" class="grid grid-cols-12">
-        <div id="vehicle-picture" class="col-start-2 col-end-4"></div>
-        <div
-          id="vehicle-info"
-          class="col-start-5 col-end-10 flex justify-between py-4"
-        >
-          <h2>{{ vehicle.year }}</h2>
-          <h2>{{ vehicle.make }}</h2>
-          <h2>{{ vehicle.model }}</h2>
-          <h2>{{ vehicle.color }}</h2>
+    <div id="vehicle-table">
+      <li v-for="vehicle in vehicles">
+        <div id="vehicle-row" class="grid grid-cols-12">
+          <router-link
+            :to="{ path: '/vehicles/' + vehicle.id }"
+            class="col-start-1 col-end-10"
+          >
+            <div id="vehicle-picture"></div>
+            <div id="vehicle-info" class="flex justify-around py-4">
+              <h2>{{ vehicle.year }}</h2>
+              <h2>{{ vehicle.make }}</h2>
+              <h2>{{ vehicle.model }}</h2>
+              <h2>{{ vehicle.color }}</h2>
+            </div>
+          </router-link>
+          <div class="col-start-10 col-end-12 flex items-center justify-around">
+            <button type="button">Park Vehicle</button>
+            <button type="button">Delete Vehicle</button>
+          </div>
         </div>
-        <router-link
-          :to="{ path: '/vehicles/' + vehicle.id }"
-          class="col-start-11 col-end-12 flex items-center"
-        >
-          <button type="button">Park Vehicle</button>
-        </router-link>
-      </div>
-    </li>
+      </li>
+    </div>
   </ul>
 </template>
 
