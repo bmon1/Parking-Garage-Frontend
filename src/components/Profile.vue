@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-12 gap-0">
+  <div class="grid grid-cols-12 gap-0 my-8">
     <div
       id="profile-picture"
       class="col-start-2 col-end-4 flex flex-col items-center my-4"
@@ -21,11 +21,9 @@
       </div>
     </div>
   </div>
-  <div id="history">
-    <div id="history-heading" class="text-center text-3xl py-6">
-      Parking History
-    </div>
-    <div id="history-table">
+  <div id="history" class="mt-2 mb-4">
+    <div id="history-heading" class="text-center text-3xl">Parking History</div>
+    <div id="history-table" class="my-12">
       <ul>
         <li v-for="parkingHistory in history">
           <div id="history-table" class="grid grid-cols-12">
@@ -33,9 +31,9 @@
               id="history-card"
               class="col-start-5 col-end-12 flex justify-between py-4"
             >
-              <h2>{{ parkingHistory.user_id }}</h2>
-              <h2>{{ parkingHistory.vehicle_id }}</h2>
-              <h2>{{ parkingHistory.garage }}</h2>
+              <h2>Owner: {{ parkingHistory.user_id }}</h2>
+              <h2>Vehicle: {{ parkingHistory.vehicle_id }}</h2>
+              <h2>Garage: {{ parkingHistory.garage }}</h2>
             </div>
           </div>
         </li>

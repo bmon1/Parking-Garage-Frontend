@@ -11,7 +11,7 @@
         >
           <h2>{{ garage.name }}</h2>
           <h2>{{ garage.address }}</h2>
-          <h2>{{ garage.open_parking_spots }}</h2>
+          <h2>Open Parking Spots: {{ garage.open_parking_spots }}</h2>
         </div>
       </div>
     </li>
