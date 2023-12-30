@@ -28,7 +28,9 @@
           </router-link>
           <div class="col-start-10 col-end-12 flex items-center justify-around">
             <button type="button">Park Vehicle</button>
-            <button type="button">Delete Vehicle</button>
+            <button @click="onDeleteVehicle" type="button">
+              Delete Vehicle
+            </button>
           </div>
         </div>
       </li>
@@ -49,5 +51,9 @@ onMounted(async () => {
 async function getVehicles() {
   let { data } = await axios.get("http://localhost:80/api/vehicles");
   vehicles.value = data.vehicles;
+}
+
+async function onDeleteVehicle() {
+  //
 }
 </script>
