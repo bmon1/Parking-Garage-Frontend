@@ -13,7 +13,10 @@
   <ul>
     <div id="vehicle-table">
       <li v-for="vehicle in vehicles">
-        <div id="vehicle-row" class="grid grid-cols-12">
+        <div
+          id="vehicle-row"
+          class="grid grid-cols-12 mx-6 my-2 bg-gray-100 border-2 border-indigo-200 rounded-md shadow-md"
+        >
           <router-link
             :to="{ path: '/vehicles/' + vehicle.id }"
             class="col-start-1 col-end-10"
@@ -26,7 +29,7 @@
               <h2>{{ vehicle.color }}</h2>
             </div>
           </router-link>
-          <div class="col-start-10 col-end-12 flex items-center justify-around">
+          <div class="col-start-10 col-end-13 flex justify-around">
             <button type="button">Park Vehicle</button>
             <button @click="onDeleteVehicle" type="button">
               Delete Vehicle

@@ -4,10 +4,7 @@
       id="profile-picture"
       class="col-start-2 col-end-4 flex flex-col items-center my-4"
     >
-      <img
-        src="../../public/profile-circle.1023x1024.png"
-        alt="Profile Picture"
-      />
+      <img src="/profile-circle.1023x1024.png" alt="Profile Picture" />
       <button type="button" class="my-6">Update Photo</button>
     </div>
     <div id="profile-info" class="col-start-5 col-end-11 m-auto" v-if="user">
@@ -26,7 +23,10 @@
     <div id="history-table" class="my-12">
       <ul>
         <li v-for="parkingHistory in history">
-          <div id="history-table" class="grid grid-cols-12">
+          <div
+            id="history-row"
+            class="grid grid-cols-12 mx-6 my-2 bg-gray-100 border-2 border-indigo-200 rounded-md shadow-md"
+          >
             <div
               id="history-card"
               class="col-start-5 col-end-12 flex justify-between py-4"
