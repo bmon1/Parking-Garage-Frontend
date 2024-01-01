@@ -1,5 +1,7 @@
 <template>
-  <div id="garage-header" class="text-center text-4xl my-12">Garages</div>
+  <div id="garage-header" class="font-serif text-center text-4xl my-12">
+    Garages
+  </div>
 
   <ul>
     <li v-for="garage in garages">

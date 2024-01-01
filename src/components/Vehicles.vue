@@ -1,11 +1,19 @@
 <template>
   <div class="grid grid-cols-12 flex">
-    <div id="vehicle-header" class="col-start-6 col-end-6 text-4xl my-12">
+    <div
+      id="vehicle-header"
+      class="font-serif col-start-6 col-end-6 text-4xl my-12"
+    >
       Vehicles
     </div>
-    <div class="col-start-11 col-end-12 flex items-center">
+    <div class="col-start-10 col-end-13 flex items-center mx-16">
       <router-link :to="{ name: 'addVehicle' }">
-        <button type="button">Add Vehicle</button>
+        <button
+          type="button"
+          class="rounded-full bg-indigo-500 m-2 p-2 text-white"
+        >
+          Add Vehicle
+        </button>
       </router-link>
     </div>
   </div>
@@ -29,9 +37,18 @@
               <h2>{{ vehicle.color }}</h2>
             </div>
           </router-link>
-          <div class="col-start-10 col-end-13 flex justify-around">
-            <button type="button">Park Vehicle</button>
-            <button @click="onDeleteVehicle" type="button">
+          <div class="col-start-10 col-end-13 flex justify-center">
+            <button
+              type="button"
+              class="rounded-full bg-indigo-500 m-2 p-2 text-white"
+            >
+              Park Vehicle
+            </button>
+            <button
+              @click="onDeleteVehicle"
+              type="button"
+              class="rounded-full bg-red-500 m-2 p-2 text-white"
+            >
               Delete Vehicle
             </button>
           </div>

@@ -1,26 +1,47 @@
 <template>
-  <div class="grid grid-cols-12 gap-0 my-8">
+  <div class="grid grid-cols-12 gap-0 my-8 flex">
     <div
       id="profile-picture"
       class="col-start-2 col-end-4 flex flex-col items-center my-4"
     >
       <img src="/profile-circle.1023x1024.png" alt="Profile Picture" />
-      <button type="button" class="my-6">Update Photo</button>
+      <button
+        type="button"
+        class="rounded-full bg-indigo-500 m-8 p-2 text-white"
+      >
+        Update Photo
+      </button>
     </div>
-    <div id="profile-info" class="col-start-5 col-end-11 m-auto" v-if="user">
-      <div class="text-2xl">
+    <div
+      id="profile-info"
+      class="col-start-5 col-end-12 px-8 py-2 m-auto border-2 border-indigo-200 rounded-md shadow-md"
+      v-if="user"
+    >
+      <div class="text-2xl my-2">
         <h3>Name: {{ user.name }}</h3>
         <h3>Email: {{ user.email }}</h3>
       </div>
-      <div class="flex justify-between py-6">
-        <button type="button">Update Name</button>
-        <button type="button">Update Email</button>
+      <div class="flex justify-between py-2">
+        <button
+          type="button"
+          class="rounded-full bg-indigo-500 mt-2 p-2 text-white"
+        >
+          Update Name
+        </button>
+        <button
+          type="button"
+          class="rounded-full bg-indigo-500 mt-2 p-2 text-white"
+        >
+          Update Email
+        </button>
       </div>
     </div>
   </div>
-  <div id="history" class="mt-2 mb-4">
-    <div id="history-heading" class="text-center text-3xl">Parking History</div>
-    <div id="history-table" class="my-12">
+  <div id="history" class="mt-2">
+    <div id="history-heading" class="font-serif text-center text-4xl">
+      Parking History
+    </div>
+    <div id="history-table" class="mt-16 mb-8">
       <ul>
         <li v-for="parkingHistory in history">
           <div
