@@ -41,7 +41,7 @@
     <div id="history-heading" class="font-serif text-center text-4xl">
       Parking History
     </div>
-    <div id="history-table" class="mt-16 mb-8">
+    <div v-if="history" id="history-table" class="mt-16 mb-8">
       <ul>
         <li v-for="parkingHistory in history">
           <div

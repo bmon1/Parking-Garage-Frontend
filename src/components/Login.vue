@@ -57,11 +57,14 @@ const form = ref({
 const user = ref();
 
 async function onLogin() {
-  await axios.get("http://localhost:80/sanctum/csrf-cookie");
-  await axios.post("http://localhost:80/login", {
-    email: form.value.email,
-    password: form.value.password,
-  });
+  await axios
+    .get("http://localhost:80/sanctum/csrf-cookie")
+    .then((response) => {
+      axios.post("http://localhost:80/login", {
+        email: form.value.email,
+        password: form.value.password,
+      });
+    });
 
   let { data } = await axios.get("http://localhost:80/api/user");
 
