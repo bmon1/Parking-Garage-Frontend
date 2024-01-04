@@ -46,7 +46,7 @@ onMounted(async () => {
 
 async function getGarage() {
   garageId = router.currentRoute.value.params.id;
-  let { data } = await axios.get(`http://localhost:80/api/garages/${garageId}`);
+  let { data } = await axios.get(`http://localhost:80/web/garages/${garageId}`);
   garage.value = data.garage;
 }
 </script>

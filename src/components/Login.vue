@@ -59,8 +59,8 @@ const user = ref();
 async function onLogin() {
   await axios
     .get("http://localhost:80/sanctum/csrf-cookie")
-    .then((response) => {
-      axios.post("http://localhost:80/login", {
+    .then(async (response) => {
+      await axios.post("http://localhost:80/login", {
         email: form.value.email,
         password: form.value.password,
       });

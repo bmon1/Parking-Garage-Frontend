@@ -96,14 +96,14 @@ onMounted(async () => {
 async function getVehicle() {
   vehicle_id = router.currentRoute.value.params.id;
   let { data } = await axios.get(
-    `http://localhost:80/api/vehicles/${vehicle_id}`
+    `http://localhost:80/web/vehicles/${vehicle_id}`
   );
   vehicle.value = data.vehicle;
 }
 
 async function getVehicleParkingHistory() {
   let { data } = await axios.get(
-    `http://localhost:80/api/vehicle-parking-history/${vehicle_id}`
+    `http://localhost:80/web/vehicle-parking-history/${vehicle_id}`
   );
   history.value = data.vehicleHistory;
 }

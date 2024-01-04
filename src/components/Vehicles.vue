@@ -35,6 +35,7 @@
               <h2>{{ vehicle.make }}</h2>
               <h2>{{ vehicle.model }}</h2>
               <h2>{{ vehicle.color }}</h2>
+              <h2>{{ vehicle.license_plate }}</h2>
             </div>
           </router-link>
           <div class="col-start-10 col-end-13 flex justify-center">
@@ -45,7 +46,7 @@
               Park Vehicle
             </button>
             <button
-              @click="onDeleteVehicle"
+              @click="onDeleteVehicle(vehicle.id)"
               type="button"
               class="rounded-full bg-red-500 m-2 p-2 text-white"
             >
@@ -63,17 +64,18 @@ import axios from "axios";
 import { ref, onMounted } from "vue";
 
 const vehicles = ref(null);
+const vehicleId = ref(null);
 
 onMounted(async () => {
   await getVehicles();
 });
 
 async function getVehicles() {
-  let { data } = await axios.get("http://localhost:80/api/vehicles");
+  let { data } = await axios.get("http://localhost:80/web/vehicles");
   vehicles.value = data.vehicles;
 }
 
-async function onDeleteVehicle() {
-  //
+async function onDeleteVehicle(id) {
+  await axios.delete(`http://localhost:80/web/vehicles/${id}`);
 }
 </script>

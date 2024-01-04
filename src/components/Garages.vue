@@ -41,7 +41,7 @@ onMounted(async () => {
 });
 
 async function getGarages() {
-  let { data } = await axios.get("http://localhost:80/api/garages");
+  let { data } = await axios.get("http://localhost:80/web/garages");
   garages.value = data.garages;
 }
 </script>

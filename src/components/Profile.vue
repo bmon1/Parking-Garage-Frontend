@@ -81,7 +81,7 @@ async function getLoggedInUser() {
 }
 
 async function getUsersParkingHistory() {
-  let { data } = await axios.get("http://localhost:80/api/parking-history");
+  let { data } = await axios.get("http://localhost:80/web/parking-history");
   history.value = data.history;
 }
 </script>
