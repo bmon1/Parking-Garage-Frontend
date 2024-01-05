@@ -48,6 +48,22 @@
             <div class="text-2xl">Not Currently Parked</div>
           </div>
         </div>
+        <div class="flex justify-center gap-8">
+          <button
+            @click="onOpenParkVehicleModal(vehicle)"
+            type="button"
+            class="rounded-full bg-indigo-500 m-2 p-2 text-white"
+          >
+            Park Vehicle
+          </button>
+          <button
+            @click="onDeleteVehicle(vehicle.id)"
+            type="button"
+            class="rounded-full bg-red-500 m-2 p-2 text-white"
+          >
+            Delete Vehicle
+          </button>
+        </div>
       </div>
     </div>
   </div>

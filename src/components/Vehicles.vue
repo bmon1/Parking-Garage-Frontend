@@ -1,4 +1,9 @@
 <template>
+  <ParkVehicleModal
+    v-if="parkVehicleModalOpen"
+    :vehicle="vehicleToPark"
+    @closeModal="parkVehicleModalOpen = false"
+  />
   <div class="grid grid-cols-12 flex">
     <div
       id="vehicle-header"
@@ -40,6 +45,7 @@
           </router-link>
           <div class="col-start-10 col-end-13 flex justify-center">
             <button
+              @click="onOpenParkVehicleModal(vehicle)"
               type="button"
               class="rounded-full bg-indigo-500 m-2 p-2 text-white"
             >
@@ -62,12 +68,18 @@
 <script setup>
 import axios from "axios";
 import { ref, onMounted } from "vue";
+import ParkVehicleModal from "./ParkVehicleModal.vue";
 
 const vehicles = ref(null);
-const vehicleId = ref(null);
+const vehicleToPark = ref(null);
+let parkVehicleModalOpen = ref(false);
 
 onMounted(async () => {
   await getVehicles();
+});
+
+defineProps({
+  vehicleToPark: Object,
 });
 
 async function getVehicles() {
@@ -77,5 +89,10 @@ async function getVehicles() {
 
 async function onDeleteVehicle(id) {
   await axios.delete(`http://localhost:80/web/vehicles/${id}`);
+}
+
+function onOpenParkVehicleModal(vehicle) {
+  parkVehicleModalOpen.value = true;
+  vehicleToPark.value = vehicle;
 }
 </script>
