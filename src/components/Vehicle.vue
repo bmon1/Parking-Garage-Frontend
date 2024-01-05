@@ -39,8 +39,8 @@
             <div class="text-2xl">{{ vehicle.parked_in_garage }}</div>
           </div>
           <div class="flex justify-between my-4 mx-28">
-            <div class="text-2xl">Entered Garage:</div>
-            <div class="text-2xl">{{ vehicle.entered_garage }}</div>
+            <div class="text-xl">Entered Garage:</div>
+            <div class="text-xl">{{ vehicle.entered_garage }}</div>
           </div>
         </div>
         <div v-else>
@@ -55,6 +55,13 @@
             class="rounded-full bg-indigo-500 m-2 p-2 text-white"
           >
             Park Vehicle
+          </button>
+          <button
+            @click="onUpdateVehicle(vehicle.id)"
+            type="button"
+            class="rounded-full bg-gray-400 m-2 p-2 text-white"
+          >
+            Update Vehicle
           </button>
           <button
             @click="onDeleteVehicle(vehicle.id)"

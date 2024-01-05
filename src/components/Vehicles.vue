@@ -6,7 +6,7 @@
   />
   <div class="grid grid-cols-12 flex">
     <div
-      id="vehicle-header"
+      id="vehicle-title"
       class="font-serif col-start-6 col-end-6 text-4xl my-12"
     >
       Vehicles
@@ -15,7 +15,7 @@
       <router-link :to="{ name: 'addVehicle' }">
         <button
           type="button"
-          class="rounded-full bg-indigo-500 m-2 p-2 text-white"
+          class="rounded-full bg-indigo-500 m-2 p-2 text-white w-32"
         >
           Add Vehicle
         </button>
@@ -32,7 +32,7 @@
         >
           <router-link
             :to="{ path: '/vehicles/' + vehicle.id }"
-            class="col-start-1 col-end-10"
+            class="col-start-1 col-end-9"
           >
             <div id="vehicle-picture"></div>
             <div id="vehicle-info" class="flex justify-around py-4">
@@ -43,18 +43,32 @@
               <h2>{{ vehicle.license_plate }}</h2>
             </div>
           </router-link>
-          <div class="col-start-10 col-end-13 flex justify-center">
+          <div class="col-start-9 col-end-13 flex justify-center">
             <button
+              v-if="!vehicle.currently_parked"
               @click="onOpenParkVehicleModal(vehicle)"
               type="button"
-              class="rounded-full bg-indigo-500 m-2 p-2 text-white"
+              class="rounded-full bg-indigo-500 m-2 p-2 text-white text-sm w-24"
             >
               Park Vehicle
             </button>
             <button
+              v-else
+              class="rounded-full bg-indigo-500 m-2 p-2 text-white text-sm w-24"
+            >
+              Parked
+            </button>
+            <button
+              @click="onUpdateVehicle(vehicle.id)"
+              type="button"
+              class="rounded-full bg-gray-400 m-2 p-2 text-white text-sm w-24"
+            >
+              Update Vehicle
+            </button>
+            <button
               @click="onDeleteVehicle(vehicle.id)"
               type="button"
-              class="rounded-full bg-red-500 m-2 p-2 text-white"
+              class="rounded-full bg-red-500 m-2 p-2 text-white text-sm w-24"
             >
               Delete Vehicle
             </button>
