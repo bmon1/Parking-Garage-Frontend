@@ -1,4 +1,19 @@
 <template>
+  <ParkVehicleModal
+    v-if="parkVehicleModalOpen"
+    :vehicle="vehicleToPark"
+    @closeModal="parkVehicleModalOpen = false"
+  />
+  <RemoveVehicleFromGarageModal
+    v-if="removeVehicleFromGarageModalOpen"
+    :vehicle="vehicleToRemoveFromGarage"
+    @closeModal="removeVehicleFromGarageModalOpen = false"
+  />
+  <DeleteVehicleModal
+    v-if="deleteVehicleModalOpen"
+    :vehicle="vehicleToDelete"
+    @closeModal="deleteVehicleModalOpen = false"
+  />
   <div id="vehicle-display" v-if="vehicle">
     <div id="vehicle-info" class="grid grid-cols-12 mt-16 mb-8">
       <div id="vehicle-picture" class="col-start-2 col-end-5 my-auto">
@@ -50,11 +65,19 @@
         </div>
         <div class="flex justify-center gap-8">
           <button
+            v-if="!vehicle.currently_parked"
             @click="onOpenParkVehicleModal(vehicle)"
             type="button"
             class="rounded-full bg-indigo-500 m-2 p-2 text-white"
           >
             Park Vehicle
+          </button>
+          <button
+            v-else
+            @click="onOpenRemoveVehicleFromGarageModal(vehicle)"
+            class="rounded-full bg-indigo-500 m-2 p-2 text-white text-sm w-24"
+          >
+            Drive Out
           </button>
           <button
             @click="onUpdateVehicle(vehicle.id)"
@@ -64,7 +87,7 @@
             Update Vehicle
           </button>
           <button
-            @click="onDeleteVehicle(vehicle.id)"
+            @click="onOpenDeleteVehicleModal(vehicle)"
             type="button"
             class="rounded-full bg-red-500 m-2 p-2 text-white"
           >
@@ -104,10 +127,19 @@
 import axios from "axios";
 import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
+import ParkVehicleModal from "./ParkVehicleModal.vue";
+import RemoveVehicleFromGarageModal from "./RemoveVehicleFromGarageModal.vue";
+import DeleteVehicleModal from "./DeleteVehicleModal.vue";
 
 const vehicle = ref(null);
 const history = ref(null);
+const vehicleToPark = ref(null);
+const vehicleToRemoveFromGarage = ref(null);
+const vehicleToDelete = ref(null);
 let vehicle_id = ref(null);
+let parkVehicleModalOpen = ref(false);
+let removeVehicleFromGarageModalOpen = ref(false);
+let deleteVehicleModalOpen = ref(false);
 
 const router = useRouter();
 
@@ -129,5 +161,20 @@ async function getVehicleParkingHistory() {
     `http://localhost:80/web/vehicle-parking-history/${vehicle_id}`
   );
   history.value = data.vehicleHistory;
+}
+
+function onOpenParkVehicleModal(vehicle) {
+  parkVehicleModalOpen.value = true;
+  vehicleToPark.value = vehicle;
+}
+
+function onOpenRemoveVehicleFromGarageModal(vehicle) {
+  removeVehicleFromGarageModalOpen.value = true;
+  vehicleToRemoveFromGarage.value = vehicle;
+}
+
+function onOpenDeleteVehicleModal(vehicle) {
+  deleteVehicleModalOpen.value = true;
+  vehicleToDelete.value = vehicle;
 }
 </script>

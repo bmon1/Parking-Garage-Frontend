@@ -3,7 +3,7 @@
     <div
       class="col-start-4 col-end-8 text-center py-12 px-24 bg-white border-3 border-indigo-600 rounded-md shadow-md"
     >
-      <p class="text-2xl">Confirm Park Vehicle</p>
+      <p class="text-2xl">Confirm Delete Vehicle</p>
       <div
         class="mt-12 py-4 bg-gray-200 border-2 border-gray-400 rounded-md shadow-md"
       >
@@ -16,10 +16,10 @@
 
       <div class="col-start-4 col-end-8 place-content-center gap-12 mt-12 flex">
         <button
-          @click="confirmParkVehicle(vehicle.id, 3)"
+          @click="confirmDeleteVehicle(vehicle.id)"
           class="rounded-full bg-indigo-500 m-2 p-2 text-white"
         >
-          Park Vehicle
+          Delete Vehicle
         </button>
         <button
           @click="closeModal"
@@ -43,9 +43,9 @@ function closeModal() {
   emits("closeModal");
 }
 
-async function confirmParkVehicle(vehicleId, garageId) {
-  let { data } = await axios.post(
-    `http://localhost:80/web/vehicles/${vehicleId}/park/${garageId}`
+async function confirmDeleteVehicle(vehicleId) {
+  let { data } = await axios.delete(
+    `http://localhost:80/web/vehicles/${vehicleId}`
   );
   closeModal();
 }

@@ -90,5 +90,7 @@ async function onAddNewVehicle() {
     color: form.value.color,
     license_plate: form.value.license_plate,
   });
+
+  router.push("/vehicles");
 }
 </script>

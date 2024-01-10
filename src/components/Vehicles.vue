@@ -4,6 +4,16 @@
     :vehicle="vehicleToPark"
     @closeModal="parkVehicleModalOpen = false"
   />
+  <RemoveVehicleFromGarageModal
+    v-if="removeVehicleFromGarageModalOpen"
+    :vehicle="vehicleToRemoveFromGarage"
+    @closeModal="removeVehicleFromGarageModalOpen = false"
+  />
+  <DeleteVehicleModal
+    v-if="deleteVehicleModalOpen"
+    :vehicle="vehicleToDelete"
+    @closeModal="deleteVehicleModalOpen = false"
+  />
   <div class="grid grid-cols-12 flex">
     <div
       id="vehicle-title"
@@ -54,9 +64,10 @@
             </button>
             <button
               v-else
+              @click="onOpenRemoveVehicleFromGarageModal(vehicle)"
               class="rounded-full bg-indigo-500 m-2 p-2 text-white text-sm w-24"
             >
-              Parked
+              Drive Out
             </button>
             <button
               @click="onUpdateVehicle(vehicle.id)"
@@ -66,7 +77,7 @@
               Update Vehicle
             </button>
             <button
-              @click="onDeleteVehicle(vehicle.id)"
+              @click="onOpenDeleteVehicleModal(vehicle)"
               type="button"
               class="rounded-full bg-red-500 m-2 p-2 text-white text-sm w-24"
             >
@@ -83,10 +94,16 @@
 import axios from "axios";
 import { ref, onMounted } from "vue";
 import ParkVehicleModal from "./ParkVehicleModal.vue";
+import RemoveVehicleFromGarageModal from "./RemoveVehicleFromGarageModal.vue";
+import DeleteVehicleModal from "./DeleteVehicleModal.vue";
 
 const vehicles = ref(null);
 const vehicleToPark = ref(null);
+const vehicleToRemoveFromGarage = ref(null);
+const vehicleToDelete = ref(null);
 let parkVehicleModalOpen = ref(false);
+let removeVehicleFromGarageModalOpen = ref(false);
+let deleteVehicleModalOpen = ref(false);
 
 onMounted(async () => {
   await getVehicles();
@@ -94,6 +111,8 @@ onMounted(async () => {
 
 defineProps({
   vehicleToPark: Object,
+  vehicleToRemoveFromGarage: Object,
+  vehicleToDelete: Object,
 });
 
 async function getVehicles() {
@@ -101,12 +120,18 @@ async function getVehicles() {
   vehicles.value = data.vehicles;
 }
 
-async function onDeleteVehicle(id) {
-  await axios.delete(`http://localhost:80/web/vehicles/${id}`);
-}
-
 function onOpenParkVehicleModal(vehicle) {
   parkVehicleModalOpen.value = true;
   vehicleToPark.value = vehicle;
+}
+
+function onOpenRemoveVehicleFromGarageModal(vehicle) {
+  removeVehicleFromGarageModalOpen.value = true;
+  vehicleToRemoveFromGarage.value = vehicle;
+}
+
+function onOpenDeleteVehicleModal(vehicle) {
+  deleteVehicleModalOpen.value = true;
+  vehicleToDelete.value = vehicle;
 }
 </script>
