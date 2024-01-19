@@ -16,7 +16,9 @@
 
       <div class="col-start-4 col-end-8 place-content-center gap-12 mt-12 flex">
         <button
-          @click="confirmRemoveVehicleFromGarage(vehicle.id, 3)"
+          @click="
+            confirmRemoveVehicleFromGarage(vehicle.id, vehicle.parked_in_garage)
+          "
           class="rounded-full bg-indigo-500 m-2 p-2 text-white"
         >
           Remove Vehicle From Garage

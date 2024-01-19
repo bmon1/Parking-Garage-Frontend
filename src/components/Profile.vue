@@ -1,4 +1,9 @@
 <template>
+  <UpdateProfileModal
+    v-if="updateProfileModalOpen"
+    :user="userToUpdate"
+    @closeModal="updateProfileModalOpen = false"
+  />
   <div class="grid grid-cols-12 gap-0 my-8 flex">
     <div
       id="profile-picture"
@@ -21,18 +26,13 @@
         <h3>Name: {{ user.name }}</h3>
         <h3>Email: {{ user.email }}</h3>
       </div>
-      <div class="flex justify-between py-2">
+      <div class="flex justify-end py-2">
         <button
+          @click="onOpenUpdateProfileModal"
           type="button"
           class="rounded-full bg-indigo-500 mt-2 p-2 text-white"
         >
-          Update Name
-        </button>
-        <button
-          type="button"
-          class="rounded-full bg-indigo-500 mt-2 p-2 text-white"
-        >
-          Update Email
+          Update Profile
         </button>
       </div>
     </div>
@@ -66,9 +66,13 @@
 <script setup>
 import axios from "axios";
 import { ref, onMounted } from "vue";
+import UpdateProfileModal from "./UpdateProfileModal.vue";
 
 const user = ref(null);
 const history = ref(null);
+const profileToUpdate = ref(null);
+let updateProfileModalOpen = ref(false);
+let userToUpdate = ref(null);
 
 onMounted(async () => {
   await getLoggedInUser();
@@ -83,5 +87,10 @@ async function getLoggedInUser() {
 async function getUsersParkingHistory() {
   let { data } = await axios.get("http://localhost:80/web/parking-history");
   history.value = data.history;
+}
+
+function onOpenUpdateProfileModal() {
+  updateProfileModalOpen.value = true;
+  userToUpdate.value = user.value;
 }
 </script>

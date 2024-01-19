@@ -14,6 +14,11 @@
     :vehicle="vehicleToDelete"
     @closeModal="deleteVehicleModalOpen = false"
   />
+  <UpdateVehicleModal
+    v-if="updateVehicleModalOpen"
+    :vehicle="vehicleToUpdate"
+    @closeModal="updateVehicleModalOpen = false"
+  />
   <div id="vehicle-display" v-if="vehicle">
     <div id="vehicle-info" class="grid grid-cols-12 mt-16 mb-8">
       <div id="vehicle-picture" class="col-start-2 col-end-5 my-auto">
@@ -80,7 +85,7 @@
             Drive Out
           </button>
           <button
-            @click="onUpdateVehicle(vehicle.id)"
+            @click="onOpenUpdateVehicleModal(vehicle)"
             type="button"
             class="rounded-full bg-gray-400 m-2 p-2 text-white"
           >
@@ -130,16 +135,19 @@ import { useRouter } from "vue-router";
 import ParkVehicleModal from "./ParkVehicleModal.vue";
 import RemoveVehicleFromGarageModal from "./RemoveVehicleFromGarageModal.vue";
 import DeleteVehicleModal from "./DeleteVehicleModal.vue";
+import UpdateVehicleModal from "./UpdateVehicleModal.vue";
 
 const vehicle = ref(null);
 const history = ref(null);
 const vehicleToPark = ref(null);
 const vehicleToRemoveFromGarage = ref(null);
 const vehicleToDelete = ref(null);
+const vehicleToUpdate = ref(null);
 let vehicle_id = ref(null);
 let parkVehicleModalOpen = ref(false);
 let removeVehicleFromGarageModalOpen = ref(false);
 let deleteVehicleModalOpen = ref(false);
+let updateVehicleModalOpen = ref(false);
 
 const router = useRouter();
 
@@ -176,5 +184,10 @@ function onOpenRemoveVehicleFromGarageModal(vehicle) {
 function onOpenDeleteVehicleModal(vehicle) {
   deleteVehicleModalOpen.value = true;
   vehicleToDelete.value = vehicle;
+}
+
+function onOpenUpdateVehicleModal(vehicle) {
+  updateVehicleModalOpen.value = true;
+  vehicleToUpdate.value = vehicle;
 }
 </script>

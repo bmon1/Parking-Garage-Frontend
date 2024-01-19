@@ -83,7 +83,7 @@ const form = ref({
 });
 
 async function onAddNewVehicle() {
-  await axios.post("http://localhost:80/web/vehicles", {
+  let { data } = await axios.post("http://localhost:80/web/vehicles", {
     year: form.value.year,
     make: form.value.make,
     model: form.value.model,

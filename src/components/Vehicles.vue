@@ -14,6 +14,11 @@
     :vehicle="vehicleToDelete"
     @closeModal="deleteVehicleModalOpen = false"
   />
+  <UpdateVehicleModal
+    v-if="updateVehicleModalOpen"
+    :vehicle="vehicleToUpdate"
+    @closeModal="updateVehicleModalOpen = false"
+  />
   <div class="grid grid-cols-12 flex">
     <div
       id="vehicle-title"
@@ -70,7 +75,7 @@
               Drive Out
             </button>
             <button
-              @click="onUpdateVehicle(vehicle.id)"
+              @click="onOpenUpdateVehicleModal(vehicle)"
               type="button"
               class="rounded-full bg-gray-400 m-2 p-2 text-white text-sm w-24"
             >
@@ -96,23 +101,20 @@ import { ref, onMounted } from "vue";
 import ParkVehicleModal from "./ParkVehicleModal.vue";
 import RemoveVehicleFromGarageModal from "./RemoveVehicleFromGarageModal.vue";
 import DeleteVehicleModal from "./DeleteVehicleModal.vue";
+import UpdateVehicleModal from "./UpdateVehicleModal.vue";
 
 const vehicles = ref(null);
 const vehicleToPark = ref(null);
 const vehicleToRemoveFromGarage = ref(null);
 const vehicleToDelete = ref(null);
+const vehicleToUpdate = ref(null);
 let parkVehicleModalOpen = ref(false);
 let removeVehicleFromGarageModalOpen = ref(false);
 let deleteVehicleModalOpen = ref(false);
+let updateVehicleModalOpen = ref(false);
 
 onMounted(async () => {
   await getVehicles();
-});
-
-defineProps({
-  vehicleToPark: Object,
-  vehicleToRemoveFromGarage: Object,
-  vehicleToDelete: Object,
 });
 
 async function getVehicles() {
@@ -133,5 +135,10 @@ function onOpenRemoveVehicleFromGarageModal(vehicle) {
 function onOpenDeleteVehicleModal(vehicle) {
   deleteVehicleModalOpen.value = true;
   vehicleToDelete.value = vehicle;
+}
+
+function onOpenUpdateVehicleModal(vehicle) {
+  updateVehicleModalOpen.value = true;
+  vehicleToUpdate.value = vehicle;
 }
 </script>

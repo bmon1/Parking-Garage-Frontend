@@ -14,9 +14,26 @@
         <p>{{ vehicle.license_plate }}</p>
       </div>
 
+      <div class="flex justify-center gap-2 pt-4">
+        <p class="text-xl">In Garage:</p>
+        <button @click="toggleDropdown" class="px-2">
+          {{ selectedGarage ? selectedGarage.name : "Select from dropdown" }}
+        </button>
+      </div>
+      <div
+        v-if="isDropdownOpen"
+        class="mt-2 bg-white border rounded-md shadow-md"
+      >
+        <ul v-for="garage in garages">
+          <li @click="selectOption(garage)" class="hover:cursor-pointer">
+            {{ garage.name }}
+          </li>
+        </ul>
+      </div>
+
       <div class="col-start-4 col-end-8 place-content-center gap-12 mt-12 flex">
         <button
-          @click="confirmParkVehicle(vehicle.id, 3)"
+          @click="confirmParkVehicle(vehicle.id, selectedGarage.id)"
           class="rounded-full bg-indigo-500 m-2 p-2 text-white"
         >
           Park Vehicle
@@ -34,13 +51,24 @@
 
 <script setup>
 import axios from "axios";
-import { defineProps, defineEmits } from "vue";
+import { defineProps, defineEmits, ref, onMounted } from "vue";
 
 const { vehicle } = defineProps(["vehicle"]);
 const emits = defineEmits();
+const isDropdownOpen = ref(false);
+const garages = ref();
+let selectedGarage = ref(null);
+
+onMounted(async () => {
+  await getGarages();
+});
 
 function closeModal() {
   emits("closeModal");
+}
+
+function toggleDropdown() {
+  isDropdownOpen.value = !isDropdownOpen.value;
 }
 
 async function confirmParkVehicle(vehicleId, garageId) {
@@ -48,6 +76,16 @@ async function confirmParkVehicle(vehicleId, garageId) {
     `http://localhost:80/web/vehicles/${vehicleId}/park/${garageId}`
   );
   closeModal();
+}
+
+function selectOption(option) {
+  selectedGarage = option;
+  isDropdownOpen.value = false;
+}
+
+async function getGarages() {
+  let { data } = await axios.get("http://localhost:80/web/garages");
+  garages.value = data.garages;
 }
 </script>
 

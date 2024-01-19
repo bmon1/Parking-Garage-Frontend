@@ -25,6 +25,6 @@ watch(
 
 // Helper function to check if the current route is the login page
 function isLoginPage(route) {
-  return route.name === "login"; // Adjust this based on your actual login route name
+  return route.name === "login" || route.name === "loginRedirect"; // Adjust this based on your actual login route name
 }
 </script>
