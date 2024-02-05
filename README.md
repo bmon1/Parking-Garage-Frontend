@@ -26,3 +26,12 @@ npm install
 ```sh
 npm run dev
 ```
+
+<br>
+<br>
+
+## Current Jira tickets affecting the project frontend
+- Update garage dropdown styling on park vehicle modal
+- Create store so updates show on page without component reload
+- Paginate Tables
+- Show toast messages for success / failure of requests
