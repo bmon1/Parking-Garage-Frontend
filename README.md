@@ -1,29 +1,28 @@
-# .
+# Parking Garage Frontend Project (Work in progress)
 
-This template should help get you started developing with Vue 3 in Vite.
+## How to get up and running
 
-## Recommended IDE Setup
+- Install npm and Node (I'm using npm v10.2.3, Node v18.17.1)
+- Clone the repository
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+```sh
+git clone https://github.com/bmon1/Parking-Garage-Frontend
+```
 
-## Customize configuration
+- Naigate to project directory
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+```sh
+cd Parking-Garage-Frontend
+```
 
-## Project Setup
+- Install dependencies
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+- Run development server
 
 ```sh
 npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
 ```
