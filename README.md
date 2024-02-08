@@ -27,8 +27,12 @@ npm install
 npm run dev
 ```
 
+<br>
+
 Use username: brandenmonroe3@yahoo.com  (not my actual email)
+<br>
 and password: password
+<br>
 to sign in until I implement the register user functionality
 
 <br>
