@@ -27,6 +27,10 @@ npm install
 npm run dev
 ```
 
+Use username: brandenmonroe3@yahoo.com  (not my actual email)
+and password: password
+to sign in until I implement the register user functionality
+
 <br>
 <br>
 
@@ -34,4 +38,5 @@ npm run dev
 - Update garage dropdown styling on park vehicle modal
 - Create store so updates show on page without component reload
 - Paginate Tables
+- Create register user form
 - Show toast messages for success / failure of requests
